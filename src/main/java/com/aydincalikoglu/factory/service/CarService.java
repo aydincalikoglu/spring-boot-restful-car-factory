@@ -1,5 +1,6 @@
 package com.aydincalikoglu.factory.service;
 
+import com.aydincalikoglu.factory.model.car.Car;
 import com.aydincalikoglu.factory.model.car.CarType;
 import com.aydincalikoglu.factory.model.car.type.Cabrio;
 import com.aydincalikoglu.factory.model.car.type.Hatchback;
@@ -10,10 +11,11 @@ import org.springframework.stereotype.Service;
 public class CarService {
 
     public String create(CarType type) {
-        return switch (type) {
-            case CABRIO -> new Cabrio().getType();
-            case HATCHBACK -> new Hatchback().getType();
-            case SEDAN -> new Sedan().getType();
-        } + " Car has produced.";
+        Car car =  switch (type) {
+            case CABRIO -> new Cabrio();
+            case HATCHBACK -> new Hatchback();
+            case SEDAN -> new Sedan();
+        };
+        return car.getType() + " Car has produced.";
     }
 }
